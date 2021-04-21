@@ -1,10 +1,10 @@
-GPU=0
-CUDNN=0
-CUDNN_HALF=0
-OPENCV=0
+GPU=1
+CUDNN=1
+CUDNN_HALF=1
+OPENCV=1
 AVX=0
 OPENMP=0
-LIBSO=0
+LIBSO=1
 ZED_CAMERA=0
 ZED_CAMERA_v2_8=0
 
@@ -25,7 +25,7 @@ ARCH= -gencode arch=compute_35,code=sm_35 \
 OS := $(shell uname)
 
 # GeForce RTX 3070, 3080, 3090
-# ARCH= -gencode arch=compute_86,code=[sm_86,compute_86]
+ARCH= -gencode arch=compute_86,code=[sm_86,compute_86]
 
 # Kepler GeForce GTX 770, GTX 760, GT 740
 # ARCH= -gencode arch=compute_30,code=sm_30
@@ -74,7 +74,7 @@ CC=gcc
 endif
 
 CPP=g++ -std=c++11
-NVCC=nvcc
+NVCC=/usr/local/cuda/bin/nvcc
 OPTS=-Ofast
 LDFLAGS= -lm -pthread
 COMMON= -Iinclude/ -I3rdparty/stb/include
